@@ -1,28 +1,30 @@
+const fs = require('fs')
 const path = require('path')
 const express = require('express')
 const WebSocket = require('ws')
-
 const Gpio = require('onoff').Gpio
-const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 200 })
-const relay = new Gpio(15, 'out')
 
-relay.writeSync(0)
-console.log(relay.readSync())
-
-let socket
-let state = 'closed'
-
-sensor.watch((err, value) => {
-  if (err) console.log(err)
-  if (value && state === 'open') hold()
-})
-
+const wss = new WebSocket.Server({ port: 3001 })
 const app = express()
 
 app.use(express.static(path.join(__dirname, 'public')))
 app.listen(3000)
 
-const wss = new WebSocket.Server({ port: 3001 })
+const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 100 })
+const relay = new Gpio(15, 'out')
+
+let db = {
+  file: 'db.json',
+  store: []
+}
+
+let state = 'closed'
+let socket
+
+sensor.watch((err, value) => {
+  if (err) console.log(err)
+  if (value && state === 'open') hold()
+})
 
 wss.on('connection', (ws) => {
   socket = ws
@@ -31,11 +33,31 @@ wss.on('connection', (ws) => {
     const msg = JSON.parse(message)
 
     if (msg.do === 'release') {
-      console.log('release', msg.token)
+      store(msg.token)
       release()
     }
   })
 })
+
+function load () {
+  fs.readFile(db.file, 'utf8', (err, data) => {
+    if (err) return console.log(err)
+    if (data) db.store = JSON.parse(data)
+  })
+}
+
+function store (token) {
+  const entry = {
+    timestamp: Date.now(),
+    token: token,
+  }
+
+  db.store.push(entry)
+
+  fs.writeFile(db.file, JSON.stringify(db.store, null, 2), 'utf8', (err, data) => {
+    if (err) console.log(err)
+  })
+}
 
 function release () {
   relay.writeSync(0)
@@ -55,3 +77,5 @@ function hold () {
   if (socket) socket.send(JSON.stringify(msg))
 }
 
+relay.writeSync(1)
+load()

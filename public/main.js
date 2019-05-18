@@ -8,11 +8,6 @@ function passed (token) {
   }
 
   socket.send(JSON.stringify(msg))
-  console.log('send', token)
-
-  setTimeout(() => {
-    location.reload()
-  }, duration)
 }
 
 socket.addEventListener('message', (message) => {
