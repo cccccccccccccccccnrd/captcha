@@ -61,10 +61,11 @@ function store (token) {
 
 function release () {
   relay.writeSync(0)
+
   setTimeout(() => {
     state = 'open'
+    console.log('open')
   }, 500)
-  console.log('open')
 }
 
 function hold () {
