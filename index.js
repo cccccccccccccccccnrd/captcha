@@ -49,7 +49,7 @@ function load () {
 function store (token) {
   const entry = {
     timestamp: Date.now(),
-    token: token,
+    token: token
   }
 
   db.store.push(entry)
