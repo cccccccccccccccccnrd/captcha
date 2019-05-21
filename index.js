@@ -11,7 +11,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 app.listen(3000)
 
 const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 100 })
-const relay = new Gpio(15, 'out')
+const motor = new Gpio(15, 'out')
 
 let db = {
   file: 'db.json',
@@ -60,7 +60,7 @@ function store (token) {
 }
 
 function release () {
-  relay.writeSync(0)
+  motor.writeSync(0)
   console.log('open')
 
   setTimeout(() => {
@@ -69,7 +69,7 @@ function release () {
 }
 
 function hold () {
-  relay.writeSync(1)
+  motor.writeSync(1)
   state = 'closed'
   console.log('closed')
 
@@ -80,5 +80,5 @@ function hold () {
   if (socket) socket.send(JSON.stringify(msg))
 }
 
-relay.writeSync(1)
+motor.writeSync(1)
 load()
