@@ -40,9 +40,16 @@ wss.on('connection', (ws) => {
 })
 
 function load () {
-  fs.readFile(db.file, 'utf8', (err, data) => {
-    if (err) return console.log(err)
-    if (data) db.store = JSON.parse(data)
+  fs.readFile(path.join(__dirname, db.file), 'utf8', (err, data) => {
+    if (err) {
+      fs.writeFile(path.join(__dirname, db.file), '{}', (err) => {
+        if (err) return
+      })
+    }
+    
+    if (data) {
+      db.store = JSON.parse(data)
+    }
   })
 }
 
@@ -54,7 +61,7 @@ function store (token) {
 
   db.store.push(entry)
 
-  fs.writeFile(db.file, JSON.stringify(db.store, null, 2), 'utf8', (err, data) => {
+  fs.writeFile(path.join(__dirname, db.file), JSON.stringify(db.store, null, 2), 'utf8', (err, data) => {
     if (err) console.log(err)
   })
 }
