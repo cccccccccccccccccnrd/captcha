@@ -46,7 +46,7 @@ function load () {
         if (err) return
       })
     }
-    
+
     if (data) {
       db.store = JSON.parse(data)
     }
@@ -84,7 +84,9 @@ function hold () {
     do: 'reload'
   }
 
-  if (socket) socket.send(JSON.stringify(msg))
+  if (socket) {
+    socket.send(JSON.stringify(msg))
+  }
 }
 
 motor.writeSync(1)
