@@ -13,7 +13,7 @@ app.listen(3000)
 const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 100 })
 const motor = new Gpio(15, 'out')
 
-let db = {
+const db = {
   file: 'db.json',
   store: []
 }
@@ -47,6 +47,8 @@ function load () {
       })
     }
 
+    console.log('loaded', JSON.parse(data))
+    
     if (data) {
       db.store = JSON.parse(data)
     }
