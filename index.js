@@ -42,13 +42,13 @@ wss.on('connection', (ws) => {
 function load () {
   fs.readFile(path.join(__dirname, db.file), 'utf8', (err, data) => {
     if (err) {
-      fs.writeFile(path.join(__dirname, db.file), '{}', (err) => {
+      fs.writeFile(path.join(__dirname, db.file), '[]', (err) => {
         if (err) return
       })
     }
 
     console.log('loaded', JSON.parse(data))
-    
+
     if (data) {
       db.store = JSON.parse(data)
     }
