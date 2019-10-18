@@ -47,8 +47,6 @@ function load () {
       })
     }
 
-    console.log('loaded', JSON.parse(data))
-
     if (data) {
       db.store = JSON.parse(data)
     }
