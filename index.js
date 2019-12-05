@@ -22,6 +22,7 @@ let state = 'closed'
 let socket
 
 sensor.watch((err, value) => {
+  console.log(value)
   if (err) console.log(err)
   if (value && state === 'open') hold()
 })
