@@ -39,7 +39,7 @@ wss.on('connection', (ws) => {
 
       setTimeout(() => {
         hold()
-      }, 1000 * 7)
+      }, 1000 * 5)
     }
   })
 })
