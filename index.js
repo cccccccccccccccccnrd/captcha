@@ -7,7 +7,8 @@ const Gpio = require('onoff').Gpio
 const wss = new WebSocket.Server({ port: 3001 })
 const app = express()
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use('/', express.static(path.join(__dirname, 'captcha')))
+app.use('/qr', express.static(path.join(__dirname, 'qr')))
 app.listen(3000)
 
 const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 100 })
