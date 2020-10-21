@@ -46,6 +46,16 @@ marquee {
   display: block;
 }
 
+.cool {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  height: 75vh;
+  width: 100%;
+}
+
 .bar {
   position: absolute;
   width: 100%;
@@ -79,6 +89,7 @@ section > div {
 
 .pop {
   font-size: 2em;
+  text-align: center;
   color: black;
   background: rgba(0, 0, 255, 0.6);
   background: white;
