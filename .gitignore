@@ -1,5 +1,7 @@
 db.json
 .vscode
+.DS_Store
+Arial.ttf
 
 # Logs
 logs
