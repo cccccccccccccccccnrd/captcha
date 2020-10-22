@@ -110,7 +110,6 @@ section > div {
   text-align: center;
   color: white;
   /* background: blue; */
-  animation: 10s infinite alternate pop;
 }
 
 .pop p {
@@ -118,9 +117,25 @@ section > div {
   color: white;
   border: 6px solid white;
   border-radius: 100px;
-  opacity: 1;
+  animation: 6s infinite alternate pop;
 }
 
-.pop.delay {
+.pop p.delay-1 {
+  animation-delay: 1s;
+}
+
+.pop p.delay-2 {
+  animation-delay: 2s;
+}
+
+.pop p.delay-3 {
+  animation-delay: 3s;
+}
+
+.pop p.delay-4 {
+  animation-delay: 4s;
+}
+
+.pop p.delay-5 {
   animation-delay: 5s;
 }
