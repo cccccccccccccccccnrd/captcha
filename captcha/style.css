@@ -52,7 +52,7 @@ marquee {
   justify-content: center;
   align-items: center;
   position: relative;
-  height: 75vh;
+  height: 85vh;
   width: 100%;
 }
 
@@ -82,8 +82,9 @@ marquee {
 section {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  width: 90%;
   height: 65vh;
+
 }
 
 section > div {
@@ -106,7 +107,7 @@ section > div {
   display: flex;
   flex-flow: column;
   gap: 0.25em;
-  font-size: 3em;
+  font-size: 2.5em;
   text-align: center;
   color: white;
   /* background: blue; */
@@ -115,7 +116,7 @@ section > div {
 .pop p {
   padding: 0.1em 0.35em;
   color: white;
-  border: 6px solid white;
+  border: 5px solid white;
   border-radius: 100px;
   animation: 6s infinite alternate pop;
 }
