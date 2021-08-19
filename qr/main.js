@@ -6,7 +6,8 @@ const canvasElement = document.querySelector('#canvas')
 const canvas = canvasElement.getContext('2d')
 
 const state = {
-  codes: []
+  codes: [],
+  data: 'cool'
 }
 
 navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
@@ -32,9 +33,19 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
       state.codes = [code, ...state.codes].slice(0, 3)
       console.log(state.codes.filter(Boolean).length)
 
-      if (code && code.data === 'cool' && state.codes.filter(Boolean).length === 1) {
-        passed(code.data)
+      if (code && code.data === state.data && state.codes.filter(Boolean).length === 1) {
         console.log('passed')
+        /* passed(code.data) */
+        graphic('success')
+        const audio = new Audio('assets/success.mp3')
+        audio.play()
+      } else if (code && code.data !== state.data && state.codes.filter(Boolean).length === 1) {
+        console.log('another')
+        graphic('error')
+
+        setTimeout(() => {
+          graphic('welcome')
+        }, 5000)
       }
     }
 
@@ -52,10 +63,15 @@ function passed (token) {
   socket.send(JSON.stringify(msg))
 }
 
+function graphic (term) {
+  document.querySelector('#graphic').src = `assets/${term}.png`
+}
+
 socket.addEventListener('message', (message) => {
   const msg = JSON.parse(message.data)
 
   if (msg.do === 'reload') {
     console.log('reload')
+    graphic('welcome')
   }
 })
