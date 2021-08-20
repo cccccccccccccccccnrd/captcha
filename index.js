@@ -21,7 +21,7 @@ server.listen(3000, () => {
   console.log('turnstile on 3000')
 })
 
-const button = new Gpio(2, 'in', 'both')
+const button = new Gpio(17, 'in', 'both')
 const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 100 })
 const motor = new Gpio(15, 'out')
 
