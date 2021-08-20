@@ -10,7 +10,7 @@ const state = {
   data: 'cool'
 }
 
-navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
+navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
   .then((stream) => {
     video.srcObject = stream
     video.setAttribute('playsinline', true)
