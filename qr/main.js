@@ -1,4 +1,4 @@
-const WS_URL = window.location.hostname === 'localhost' ? 'ws://localhost:3001' : 'ws://192.168.43.107:3001'
+const WS_URL = window.location.hostname === 'localhost' ? 'ws://localhost:3001' : 'ws://172.16.214.54:3001'
 const socket = new WebSocket(WS_URL)
 
 const video = document.createElement('video')
