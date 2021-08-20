@@ -3,6 +3,7 @@ db.json
 .DS_Store
 Arial.ttf
 qr/assets
+cert
 
 # Logs
 logs
