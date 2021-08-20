@@ -35,7 +35,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } })
 
       if (code && code.data === state.data && state.codes.filter(Boolean).length === 1) {
         console.log('passed')
-        /* passed(code.data) */
+        passed(code.data)
         graphic('success')
         const audio = new Audio('assets/success.mp3')
         audio.play()
