@@ -21,6 +21,7 @@ server.listen(3000, () => {
   console.log('turnstile on 3000')
 })
 
+const button = new Gpio(27, 'in', 'both')
 const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 100 })
 const motor = new Gpio(15, 'out')
 
@@ -36,6 +37,13 @@ sensor.watch((err, value) => {
   console.log(value)
   if (err) console.log(err)
   if (value && state === 'open') hold()
+})
+
+button.watch((err, value) => {
+  console.log(value)
+  if (value) {
+    release()
+  }
 })
 
 wss.on('connection', (ws) => {
