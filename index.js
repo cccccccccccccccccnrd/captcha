@@ -8,13 +8,13 @@ const Gpio = require('onoff').Gpio
 const wss = new WebSocket.Server({ port: 3001 })
 const app = express()
 
-const key = fs.readFileSync(path.join(__dirname, 'cert/key.pem'))
+/* const key = fs.readFileSync(path.join(__dirname, 'cert/key.pem'))
 const cert = fs.readFileSync(path.join(__dirname, 'cert/cert.pem'))
-const server = https.createServer({ key: key, cert: cert }, app)
+const server = https.createServer({ key: key, cert: cert }, app) */
 
 app.use('/', express.static(path.join(__dirname, 'captcha')))
 app.use('/qr', express.static(path.join(__dirname, 'qr')))
-server.listen(3000, () => {
+app.listen(3000, () => {
   console.log('turnstile on 3000')
 })
 
