@@ -89,6 +89,10 @@ function release () {
   setTimeout(() => {
     state = 'open'
   }, 250)
+
+  setTimeout(() => {
+    state = 'closed'
+  }, 7000)
 }
 
 function hold () {
