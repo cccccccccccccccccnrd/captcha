@@ -1,4 +1,4 @@
-const WS_URL = window.location.hostname === 'localhost' ? 'ws://localhost:3000' : 'wss://turnstile.local:3000'
+const WS_URL = window.location.hostname === 'localhost' ? 'ws://localhost:3000' : 'wss://172.16.214.54:3000'
 const socket = new WebSocket(WS_URL)
 
 const video = document.createElement('video')
