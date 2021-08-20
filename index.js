@@ -9,7 +9,9 @@ const app = express()
 
 app.use('/', express.static(path.join(__dirname, 'captcha')))
 app.use('/qr', express.static(path.join(__dirname, 'qr')))
-app.listen(3000)
+app.listen(3000, () => {
+  console.log('turnstile on 3000')
+})
 
 const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 100 })
 const motor = new Gpio(15, 'out')
