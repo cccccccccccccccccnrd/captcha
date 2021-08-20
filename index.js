@@ -14,8 +14,7 @@ const cert = fs.readFileSync(path.join(__dirname, 'cert/cert.pem'))
 const server = https.createServer({ key: key, cert: cert }, app)
 
 const wss = new WebSocket.Server({
-  server,
-  port: 3001
+  server
 })
 
 server.listen(3000, () => {
