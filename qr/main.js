@@ -7,7 +7,7 @@ const canvas = canvasElement.getContext('2d')
 
 const state = {
   codes: [],
-  data: 'cool'
+  data: 'Welcome'
 }
 
 navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
