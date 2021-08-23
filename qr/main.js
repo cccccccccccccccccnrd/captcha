@@ -44,7 +44,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
 
         setTimeout(() => {
           graphic('welcome')
-        }, 5000)
+        }, 5 * 1000)
       }
     }
 
@@ -83,6 +83,6 @@ socket.addEventListener('message', (message) => {
 
     setTimeout(() => {
       graphic('welcome')
-    }, 6000)
+    }, 6 * 1000)
   }
 })
