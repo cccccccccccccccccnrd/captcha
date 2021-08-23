@@ -78,6 +78,11 @@ socket.addEventListener('message', (message) => {
     console.log('reload')
     graphic('welcome')
   } else if (msg.do === 'button') {
+    graphic('exit')
     sound()
+
+    setTimeout(() => {
+      graphic('welcome')
+    }, 5000)
   }
 })
