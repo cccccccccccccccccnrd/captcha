@@ -56,10 +56,6 @@ wss.on('connection', (ws) => {
     if (msg.do === 'release') {
       store(msg.token)
       release()
-
-      setTimeout(() => {
-        hold()
-      }, 6 * 1000)
     }
   })
 })
@@ -98,6 +94,10 @@ function release () {
   setTimeout(() => {
     state = 'open'
   }, 250)
+
+  setTimeout(() => {
+    hold()
+  }, 6 * 1000)
 }
 
 function hold () {
