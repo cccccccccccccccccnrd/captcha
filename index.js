@@ -34,15 +34,16 @@ let state = 'closed'
 let socket
 
 sensor.watch((err, value) => {
-  console.log(value)
+  console.log('sensor', value)
   if (err) console.log(err)
   if (value && state === 'open') hold()
 })
 
 button.watch((err, value) => {
-  console.log(value)
+  console.log('button', value)
   if (value) {
     release()
+    send('button')
   }
 })
 
@@ -56,9 +57,9 @@ wss.on('connection', (ws) => {
       store(msg.token)
       release()
 
-      /* setTimeout(() => {
+      setTimeout(() => {
         hold()
-      }, 1000 * 5) */
+      }, 6 * 1000)
     }
   })
 })
@@ -97,10 +98,6 @@ function release () {
   setTimeout(() => {
     state = 'open'
   }, 250)
-
-  setTimeout(() => {
-    hold()
-  }, 7000)
 }
 
 function hold () {
@@ -108,8 +105,12 @@ function hold () {
   state = 'closed'
   console.log('closed')
 
+  send('reload')
+}
+
+function send (command) {
   const msg = {
-    do: 'reload'
+    do: command
   }
 
   if (socket) {

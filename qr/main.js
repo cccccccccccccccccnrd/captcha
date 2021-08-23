@@ -1,4 +1,4 @@
-const WS_URL = window.location.hostname === 'localhost' ? 'ws://localhost:3000' : 'wss://172.16.214.54:3000'
+const WS_URL = window.location.hostname === 'localhost' ? 'ws://localhost:3000' : 'wss://192.168.0.101:3000'
 const socket = new WebSocket(WS_URL)
 
 const video = document.createElement('video')
@@ -37,8 +37,7 @@ navigator.mediaDevices.getUserMedia({ video: { facingMode: 'user' } })
         console.log('passed')
         passed(code.data)
         graphic('success')
-        const audio = new Audio('assets/success.mp3')
-        audio.play()
+        sound()
       } else if (code && code.data !== state.data && state.codes.filter(Boolean).length === 1) {
         console.log('another')
         graphic('error')
@@ -67,11 +66,18 @@ function graphic (term) {
   document.querySelector('#graphic').src = `assets/${term}.png`
 }
 
+function sound () {
+  const audio = new Audio('assets/success.mp3')
+  audio.play()
+}
+
 socket.addEventListener('message', (message) => {
   const msg = JSON.parse(message.data)
 
   if (msg.do === 'reload') {
     console.log('reload')
     graphic('welcome')
+  } else if (msg.do === 'button') {
+    sound()
   }
 })
