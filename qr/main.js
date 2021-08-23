@@ -83,6 +83,6 @@ socket.addEventListener('message', (message) => {
 
     setTimeout(() => {
       graphic('welcome')
-    }, 5000)
+    }, 6000)
   }
 })
