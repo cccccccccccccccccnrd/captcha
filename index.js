@@ -1,23 +1,16 @@
 const fs = require('fs')
 const path = require('path')
 const express = require('express')
-const https = require('https')
 const WebSocket = require('ws')
 const Gpio = require('onoff').Gpio
 
+const wss = new WebSocket.Server({ port: 3001 })
 const app = express()
+
 app.use('/', express.static(path.join(__dirname, 'captcha')))
 app.use('/qr', express.static(path.join(__dirname, 'qr')))
 
-const key = fs.readFileSync(path.join(__dirname, 'cert/key.pem'))
-const cert = fs.readFileSync(path.join(__dirname, 'cert/cert.pem'))
-const server = https.createServer({ key: key, cert: cert }, app)
-
-const wss = new WebSocket.Server({
-  server
-})
-
-server.listen(3000, () => {
+app.listen(3000, () => {
   console.log('turnstile on 3000')
 })
 
