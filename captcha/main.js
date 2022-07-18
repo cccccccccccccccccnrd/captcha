@@ -1,4 +1,4 @@
-const WS_URL = window.location.hostname === 'localhost' ? 'ws://localhost:3001' : 'ws://192.168.0.109:3001'
+const WS_URL = window.location.hostname === 'localhost' ? 'ws://localhost:3001' : 'ws://10.10.10.100:3001'
 const socket = new WebSocket(WS_URL)
 
 function passed (token) {
