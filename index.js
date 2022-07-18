@@ -15,7 +15,7 @@ app.listen(3000, () => {
 })
 
 const button = new Gpio(17, 'in', 'rising', { debounceTimeout: 100 })
-const sensor = new Gpio(14, 'in', 'rising', { debounceTimeout: 100 })
+const sensor = new Gpio(4, 'in', 'rising', { debounceTimeout: 100 })
 const motor = new Gpio(15, 'out')
 
 const db = {
